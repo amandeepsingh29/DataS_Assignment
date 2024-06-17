@@ -12,3 +12,17 @@ six==1.16.0
 soupsieve==2.5
 tzdata==2024.1
 urllib3==2.2.1
+
+
+if social_media_data != 'Not Found':
+    for item in social_media_data:
+        cursor.execute(
+            "INSERT INTO social_media (website_id, platform, link) VALUES (%s, %s, %s)",
+            (website_id, item['platform'], item['link'])
+        )
+else:
+    # Insert NULL values for platform and link
+    cursor.execute(
+        "INSERT INTO social_media (website_id, platform, link) VALUES (%s, %s, %s)",
+        (website_id, None, None)
+    )
