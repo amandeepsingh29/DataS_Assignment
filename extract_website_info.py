@@ -351,6 +351,22 @@ if __name__ == "__main__":
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             # Insert Social Media Data
             if social_media_data != 'Not Found' and social_media_data!=[]:
                 for item in social_media_data:
@@ -362,8 +378,7 @@ if __name__ == "__main__":
                 cursor.execute(
                         "INSERT INTO social_media (website_id, platform, link) VALUES (%s, %s, %s)",
                         (website_id,"-","-")
-                    )
-                
+                    )    
             else:
                 cursor.execute(
                     "INSERT INTO social_media (website_id, platform, link) VALUES (%s, %s, %s)",
@@ -371,13 +386,39 @@ if __name__ == "__main__":
                 )
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             
             # Insert Tech Stack Data
-            if tech_stack_data != 'Not Found':
+            if tech_stack_data != 'Not Found' and tech_stack_data!=[]:
                 for tech in tech_stack_data:
                     cursor.execute(
                         "INSERT INTO tech_stack (website_id, technology) VALUES (%s, %s)",
                         (website_id, tech)
+                    )
+            elif tech_stack_data==[]:
+                cursor.execute(
+                        "INSERT INTO tech_stack (website_id, technology) VALUES (%s, %s)",
+                        (website_id, '-')
                     )
             else:
                 cursor.execute(
@@ -385,11 +426,35 @@ if __name__ == "__main__":
                     (website_id, 'Not Found')
                 )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             # Insert Meta Data
-            if meta_data != 'Not Found':
+            if meta_data != 'Not Found' and meta_data!=[]:
                 cursor.execute(
                     "INSERT INTO meta (website_id, title, description) VALUES (%s, %s, %s)",
                     (website_id, meta_data['title'], meta_data['description'])
+                )
+            elif meta_data==[]:
+                cursor.execute(
+                    "INSERT INTO meta (website_id, title, description) VALUES (%s, %s, %s)",
+                    (website_id, '-','-')
                 )
             else:
                 cursor.execute(
@@ -397,12 +462,38 @@ if __name__ == "__main__":
                     (website_id, 'Not Found', 'Not Found')
                 )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             # Insert Payment Gateways Data
-            if payment_gateways_data != 'Not Found':
+            if payment_gateways_data != 'Not Found' and payment_gateways_data!=[]:
                 for gateway in payment_gateways_data:
                     cursor.execute(
                         "INSERT INTO payment_gateways (website_id, gateway) VALUES (%s, %s)",
                         (website_id, gateway)
+                    )
+            elif payment_gateways_data==[]:
+                cursor.execute(
+                        "INSERT INTO payment_gateways (website_id, gateway) VALUES (%s, %s)",
+                        (website_id, '-')
                     )
             else:
                 cursor.execute(
@@ -410,17 +501,63 @@ if __name__ == "__main__":
                     (website_id, 'Not Found')
                 )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             # Insert Language Data
-            if language_data != 'Not Found':
+            if language_data != 'Not Found' and language_data!=[]:
                 cursor.execute(
                     "INSERT INTO languages (website_id, language) VALUES (%s, %s)",
                     (website_id, language_data)
+                )
+            elif language_data==[]:
+                cursor.execute(
+                    "INSERT INTO languages (website_id, language) VALUES (%s, %s)",
+                    (website_id, '-')
                 )
             else:
                 cursor.execute(
                     "INSERT INTO languages (website_id, language) VALUES (%s, %s)",
                     (website_id, 'Not Found')
                 )
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             db.commit()
             print(f"Data for {url} inserted successfully.")
