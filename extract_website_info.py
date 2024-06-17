@@ -28,7 +28,7 @@ def extract_social_media(url):
                 if any(platform in href for platform in ['facebook', 'twitter', 'linkedin', 'instagram', 'youtube']):
                     links.append({'platform': platform, 'link': href})
         # print(soup)
-        print(links)
+        # print(links)
         return links
     except requests.exceptions.RequestException as e:
         print(f"Error fetching {url}: {e}")
@@ -348,25 +348,6 @@ if __name__ == "__main__":
             )
             website_id = cursor.lastrowid
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             # Insert Social Media Data
             if social_media_data != 'Not Found' and social_media_data!=[]:
                 for item in social_media_data:
@@ -384,30 +365,7 @@ if __name__ == "__main__":
                     "INSERT INTO social_media (website_id, platform, link) VALUES (%s, %s, %s)",
                     (website_id, 'Not Found', 'Not Found')
                 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
+                 
             # Insert Tech Stack Data
             if tech_stack_data != 'Not Found' and tech_stack_data!=[]:
                 for tech in tech_stack_data:
@@ -426,25 +384,6 @@ if __name__ == "__main__":
                     (website_id, 'Not Found')
                 )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             # Insert Meta Data
             if meta_data != 'Not Found' and meta_data!=[]:
                 cursor.execute(
@@ -461,27 +400,6 @@ if __name__ == "__main__":
                     "INSERT INTO meta (website_id, title, description) VALUES (%s, %s, %s)",
                     (website_id, 'Not Found', 'Not Found')
                 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             # Insert Payment Gateways Data
             if payment_gateways_data != 'Not Found' and payment_gateways_data!=[]:
@@ -501,34 +419,6 @@ if __name__ == "__main__":
                     (website_id, 'Not Found')
                 )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             # Insert Language Data
             if language_data != 'Not Found' and language_data!=[]:
                 cursor.execute(
@@ -545,19 +435,6 @@ if __name__ == "__main__":
                     "INSERT INTO languages (website_id, language) VALUES (%s, %s)",
                     (website_id, 'Not Found')
                 )
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             db.commit()
             print(f"Data for {url} inserted successfully.")
