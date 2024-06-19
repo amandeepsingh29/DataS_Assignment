@@ -41,7 +41,7 @@ This Python script extracts various data points from websites and stores them in
      - `languages`: Stores the language of each website.
 
 
-## Database Schema
+#### Database Schema
 
     The script creates the following tables:
 
