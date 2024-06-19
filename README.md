@@ -41,7 +41,7 @@ This Python script extracts various data points from websites and stores them in
      - `languages`: Stores the language of each website.
 
 
-#### Database Schema
+### Database Schema
 
     The script creates the following tables:
 
@@ -91,10 +91,10 @@ This Python script extracts various data points from websites and stores them in
     - `payment_gateways`: `website_id` references `websites.website_id`.
     - `languages`: `website_id` references `websites.website_id`.
 
-## Query for Retrieving Data
+### Query for Retrieving Data
 
 ```bash
-  sql
+sql
 SELECT 
     w.website_id,
     w.url,
