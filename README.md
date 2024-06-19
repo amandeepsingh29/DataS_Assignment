@@ -25,7 +25,9 @@ This Python script extracts various data points from websites and stores them in
 
 1. **Create a MySQL database:** Create a database named `webscp`.
 2. **Clone the Repository** Create a local file with git clone command.
-    -git clone https://github.com/amandeepsingh29/DataS_Assignment.git
+```bash
+  git clone https://github.com/amandeepsingh29/DataS_Assignment.git
+```
 
 3. **Configure database connection:**
    - Update the `connect_to_database()` function in the script with your MySQL server details (host, user, password).
