@@ -36,10 +36,6 @@ This Python script extracts various data points from websites and stores them in
      - `languages`: Stores the language of each website.
 
 
-# Website Data Extractor and Database Storage
-
-This SQL script defines the database schema for storing website data extracted by a Python script.
-
 ## Database Schema
 
 The script creates the following tables:
@@ -117,21 +113,3 @@ LEFT JOIN languages l ON w.website_id = l.website_id;
 
 4. **Run the script:**
    - Execute the Python script. It will fetch data from the specified list of URLs and store it in the database.
-
-## Usage
-
-1. **Modify the `website_urls` list:** Add or remove URLs to target specific websites.
-2. **Run the script:** Execute the script to extract and store data.
-
-## Example
-
-```python
-# Example usage
-website_urls = [
-    'https://www.google.com',
-    'https://www.amazon.com',
-    'https://www.facebook.com',
-    # ... add more URLs
-]
-
-# ... rest of the script
