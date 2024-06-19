@@ -14,7 +14,7 @@ This Python script extracts various data points from websites and stores them in
 
 ## Requirements
 
-- Python 3.x
+- Python 3.x (I used 3.11)
 - `requests` library: `pip install requests`
 - `beautifulsoup4` library: `pip install beautifulsoup4`
 - `mysql-connector-python` library: `pip install mysql-connector-python`
@@ -23,7 +23,7 @@ This Python script extracts various data points from websites and stores them in
 
 ## Setup
 
-1. **Create a MySQL database:** Create a database named `webscp` (or any name you prefer).
+1. **Create a MySQL database:** Create a database named `webscp` or create with any other name but remember to change the name of database in connect_to_database() function.
 2. **Configure database connection:**
    - Update the `connect_to_database()` function in the script with your MySQL server details (host, user, password).
 3. **Create database tables:**
