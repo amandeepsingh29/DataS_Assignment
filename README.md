@@ -91,28 +91,29 @@ This Python script extracts various data points from websites and stores them in
     - `payment_gateways`: `website_id` references `websites.website_id`.
     - `languages`: `website_id` references `websites.website_id`.
 
-    ## Query for Retrieving Data
+## Query for Retrieving Data
 
-    ```sql
-    SELECT 
-        w.website_id,
-        w.url,
-        w.category,
-        l.language,
-        m.title,
-        m.description,
-        ts.technology,
-        pg.gateway,
-        sm.platform,
-        sm.link
-    FROM 
-        websites w
-    LEFT JOIN social_media sm ON w.website_id = sm.website_id
-    LEFT JOIN tech_stack ts ON w.website_id = ts.website_id
-    LEFT JOIN meta m ON w.website_id = m.website_id
-    LEFT JOIN payment_gateways pg ON w.website_id = pg.website_id
-    LEFT JOIN languages l ON w.website_id = l.website_id;
-
+```bash
+  sql
+SELECT 
+    w.website_id,
+    w.url,
+    w.category,
+    l.language,
+    m.title,
+    m.description,
+    ts.technology,
+    pg.gateway,
+    sm.platform,
+    sm.link
+FROM 
+    websites w
+LEFT JOIN social_media sm ON w.website_id = sm.website_id
+LEFT JOIN tech_stack ts ON w.website_id = ts.website_id
+LEFT JOIN meta m ON w.website_id = m.website_id
+LEFT JOIN payment_gateways pg ON w.website_id = pg.website_id
+LEFT JOIN languages l ON w.website_id = l.website_id;
+```
 
 
 
