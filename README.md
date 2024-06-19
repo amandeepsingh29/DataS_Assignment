@@ -30,7 +30,7 @@ This Python script extracts various data points from websites and stores them in
 ```
 3. **Suggested create a vitual environment** Create a using virtualenv
 ```bash
-  virtualenv venv
+virtualenv venv
 #   activate the virtual environment
 # Windows
 myenv\Scripts\activate
@@ -127,7 +127,7 @@ LEFT JOIN languages l ON w.website_id = l.website_id;
 
 
 6. **Run the script:**
-   - Execute the Python script. 
+Execute the Python script. 
 ```bash
 python extract_website_info.py
 ```
