@@ -3,9 +3,7 @@ from urllib.parse import urljoin
 from urllib.robotparser import RobotFileParser
 
 website_list = [
-    "https://www.example.com", 
-    "https://www.wikipedia.org",
-    "https://www.expedia.com/Things-to-Do"  # Add more websites here
+    'https://github.com/marcoceppi'
 ]
 
 def check_scraping_allowed(url):

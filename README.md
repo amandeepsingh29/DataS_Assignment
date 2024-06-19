@@ -28,10 +28,19 @@ This Python script extracts various data points from websites and stores them in
 ```bash
   git clone https://github.com/amandeepsingh29/DataS_Assignment.git
 ```
+3. **Suggested create a vitual environment** Create a using virtualenv
+```bash
+  virtualenv venv
+#   activate the virtual environment
+# Windows
+myenv\Scripts\activate
+# macOS and Linux
+source myenv/bin/activate
+```
 
-3. **Configure database connection:**
+4. **Configure database connection:**
    - Update the `connect_to_database()` function in the script with your MySQL server details (host, user, password).
-4. **Create database tables:**
+5. **Create database tables:**
    - The script creates the following tables:
      - `websites`: Stores website URL and category.
      - `social_media`: Stores social media links for each website.
@@ -117,5 +126,8 @@ LEFT JOIN languages l ON w.website_id = l.website_id;
 
 
 
-5. **Run the script:**
-   - Execute the Python script. It will fetch data from the specified list of URLs and store it in the database.
+6. **Run the script:**
+   - Execute the Python script. 
+```bash
+python extract_website_info.py
+```
