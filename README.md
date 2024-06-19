@@ -38,75 +38,75 @@ This Python script extracts various data points from websites and stores them in
 
 ## Database Schema
 
-The script creates the following tables:
+    The script creates the following tables:
 
-**1. `websites`**
+    **1. `websites`**
 
-- `website_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each website.
-- `url` (VARCHAR(255) UNIQUE NOT NULL): URL of the website.
-- `category` (VARCHAR(255) NOT NULL): Category of the website (e.g., technology, news, business).
+    - `website_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each website.
+    - `url` (VARCHAR(255) UNIQUE NOT NULL): URL of the website.
+    - `category` (VARCHAR(255) NOT NULL): Category of the website (e.g., technology, news, business).
 
-**2. `social_media`**
+    **2. `social_media`**
 
-- `social_media_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each social media link.
-- `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
-- `platform` (VARCHAR(50) NOT NULL): Social media platform (e.g., Facebook, Twitter, LinkedIn).
-- `link` (VARCHAR(255) NOT NULL): URL of the social media link.
+    - `social_media_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each social media link.
+    - `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
+    - `platform` (VARCHAR(50) NOT NULL): Social media platform (e.g., Facebook, Twitter, LinkedIn).
+    - `link` (VARCHAR(255) NOT NULL): URL of the social media link.
 
-**3. `tech_stack`**
+    **3. `tech_stack`**
 
-- `tech_stack_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each technology used.
-- `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
-- `technology` (VARCHAR(50) NOT NULL): Technology used on the website (e.g., React, Django, WordPress).
+    - `tech_stack_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each technology used.
+    - `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
+    - `technology` (VARCHAR(50) NOT NULL): Technology used on the website (e.g., React, Django, WordPress).
 
-**4. `meta`**
+    **4. `meta`**
 
-- `meta_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each meta data entry.
-- `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
-- `title` (VARCHAR(255) NOT NULL): Title of the website.
-- `description` (TEXT): Description of the website.
+    - `meta_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each meta data entry.
+    - `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
+    - `title` (VARCHAR(255) NOT NULL): Title of the website.
+    - `description` (TEXT): Description of the website.
 
-**5. `payment_gateways`**
+    **5. `payment_gateways`**
 
-- `payment_gateways_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each payment gateway.
-- `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
-- `gateway` (VARCHAR(50) NOT NULL): Payment gateway used on the website (e.g., PayPal, Stripe).
+    - `payment_gateways_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each payment gateway.
+    - `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
+    - `gateway` (VARCHAR(50) NOT NULL): Payment gateway used on the website (e.g., PayPal, Stripe).
 
-**6. `languages`**
+    **6. `languages`**
 
-- `language_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each language.
-- `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
-- `language` (VARCHAR(50) NOT NULL): Language of the website (e.g., English, Spanish).
+    - `language_id` (INT AUTO_INCREMENT PRIMARY KEY): Unique identifier for each language.
+    - `website_id` (INT NOT NULL): Foreign key referencing the `websites` table.
+    - `language` (VARCHAR(50) NOT NULL): Language of the website (e.g., English, Spanish).
 
-## Foreign Key Constraints
+    ## Foreign Key Constraints
 
-- `social_media`: `website_id` references `websites.website_id`.
-- `tech_stack`: `website_id` references `websites.website_id`.
-- `meta`: `website_id` references `websites.website_id`.
-- `payment_gateways`: `website_id` references `websites.website_id`.
-- `languages`: `website_id` references `websites.website_id`.
+    - `social_media`: `website_id` references `websites.website_id`.
+    - `tech_stack`: `website_id` references `websites.website_id`.
+    - `meta`: `website_id` references `websites.website_id`.
+    - `payment_gateways`: `website_id` references `websites.website_id`.
+    - `languages`: `website_id` references `websites.website_id`.
 
-## Query for Retrieving Data
+    ## Query for Retrieving Data
 
-```sql
-SELECT 
-    w.website_id,
-    w.url,
-    w.category,
-    l.language,
-    m.title,
-    m.description,
-    ts.technology,
-    pg.gateway,
-    sm.platform,
-    sm.link
-FROM 
-    websites w
-LEFT JOIN social_media sm ON w.website_id = sm.website_id
-LEFT JOIN tech_stack ts ON w.website_id = ts.website_id
-LEFT JOIN meta m ON w.website_id = m.website_id
-LEFT JOIN payment_gateways pg ON w.website_id = pg.website_id
-LEFT JOIN languages l ON w.website_id = l.website_id;
+    ```sql
+    SELECT 
+        w.website_id,
+        w.url,
+        w.category,
+        l.language,
+        m.title,
+        m.description,
+        ts.technology,
+        pg.gateway,
+        sm.platform,
+        sm.link
+    FROM 
+        websites w
+    LEFT JOIN social_media sm ON w.website_id = sm.website_id
+    LEFT JOIN tech_stack ts ON w.website_id = ts.website_id
+    LEFT JOIN meta m ON w.website_id = m.website_id
+    LEFT JOIN payment_gateways pg ON w.website_id = pg.website_id
+    LEFT JOIN languages l ON w.website_id = l.website_id;
 
 
 
