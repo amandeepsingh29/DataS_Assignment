@@ -26,7 +26,6 @@ def extract_social_media(url):
         for link in soup.find_all('a', class_='Link--primary'):  # Use a class name
             href = link.get('href')
             if href is not None:
-                # Determine platform based on URL patterns
                 if 'facebook.com' in href:
                     platform = 'Facebook'
                 elif 'twitter.com' in href:
@@ -38,7 +37,7 @@ def extract_social_media(url):
                 elif 'youtube.com' in href:
                     platform = 'YouTube'
                 else:
-                    platform = 'Other'  # Default to "Other" if platform not recognized
+                    platform = 'Other'
 
                 links.append({'platform': platform, 'link': href})
 
@@ -58,22 +57,18 @@ def extract_tech_stack(url):
         html_content = response.text
         headers = response.headers
 
-        # Parse the HTML content
         soup = BeautifulSoup(html_content, 'html.parser')
 
-        # Check for front-end technologies
         front_end_techs = ['react', 'angular', 'vue', 'nextjs', 'ember', 'backbone', 'polymer', 'preact']
         front_end_tech = check_script_links(soup, front_end_techs)
         if front_end_tech:
             return front_end_tech
 
-        # Check for back-end technologies
         back_end_techs = ['django', 'laravel', 'symfony', 'express', 'spring', 'aspnet', 'flask', 'rails']
         back_end_tech = check_script_links(soup, back_end_techs)
         if back_end_tech:
             return back_end_tech
 
-        # Check for other technologies
         if soup.find('meta', {'name': 'generator', 'content': re.compile(r'wordpress', re.I)}):
             return 'WordPress'
         elif soup.find('meta', {'name': 'generator', 'content': re.compile(r'drupal', re.I)}):
@@ -132,7 +127,7 @@ def extract_meta_data(url):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching {url}: {e}")
         return {}
-    except Exception as e:  # Handle any other errors during extraction
+    except Exception as e:  
         print(f"Error extracting meta data for {url}: {e}")
         return 'Not Found' 
 
@@ -150,7 +145,7 @@ def extract_payment_gateways(url):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching {url}: {e}")
         return []
-    except Exception as e:  # Handle any other errors during extraction
+    except Exception as e:
         print(f"Error extracting payment gateways for {url}: {e}")
         return 'Not Found' 
 
@@ -193,9 +188,9 @@ def extract_category(url):
             keyword_counts[keyword] = cleaned_text.count(keyword)
 
         # Find Keywords with Highest Counts
-        max_counts = np.array(list(keyword_counts.values()))  # Convert to NumPy array
-        top_keywords = np.where(max_counts == max_counts.max())  # Find indices of maximum counts
-        top_keywords = [keywords[i] for i in top_keywords[0]]  # Get the keywords at those indices
+        max_counts = np.array(list(keyword_counts.values()))  
+        top_keywords = np.where(max_counts == max_counts.max()) 
+        top_keywords = [keywords[i] for i in top_keywords[0]]
 
         # Return Top Keyword (or "Unknown" if no clear top keyword)
         if len(top_keywords) == 1:
@@ -208,18 +203,18 @@ def extract_category(url):
                 else:
                     keyword_string += "," + keyword
             
-            return keyword_string # More specific message
+            return keyword_string 
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching {url}: {e}")
-        return 'Error Fetching Website'  # More specific message
+        return 'Error Fetching Website' 
     except Exception as e:  # Handle any other errors during extraction
         print(f"Error extracting category for {url}: {e}")
-        return 'Error Extracting Category'  # More specific message 
+        return 'Error Extracting Category' 
 
 def connect_to_database():
     mydb = mysql.connector.connect(
-        host="localhost",  # Or your server's IP address
+        host="localhost",
         user="root",
         password="",
         database="webscp"
@@ -332,26 +327,6 @@ if __name__ == "__main__":
 # ]
     
     website_urls = [
-        "https://blog.medium.com/be-part-of-a-better-internet-5c4aa58ec826",
-        "https://blog.medium.com/state-of-medium-f633e21a172a",
-        "https://medium.com/illumination-curated/the-real-history-of-juneteenth-and-the-reason-its-a-federal-holiday-f4fb960943ea",
-        "https://medium.com/human-parts/unpacking-the-day-job-7095c1f27c11",
-        "https://medium.com/@vp2005rawal/mastering-matrices-why-row-operations-trump-column-operations-for-efficient-matrix-manipulation-9090b92d2822",
-        "https://medium.com/@gilescrouch/why-technology-creates-more-jobs-51b1d0540148",
-        "https://medium.com/cogni-tiva/sci-hub-is-the-worst-thing-that-has-happened-to-science-eee5dc4706c9",
-        "https://medium.com/gitconnected/why-i-left-my-300-000-google-job-70489d55867c",
-        "https://medium.com/cogni-tiva/most-students-learn-wrong-how-to-study-anything-smarter-in-4-steps-ce120ddc674a",
-        "https://medium.com/something-simple/alex-the-parrot-that-spoke-human-b72f3cce3d62",
-        "https://medium.com/cogni-tiva/most-people-use-google-wrong-how-to-use-it-like-a-professional-86ae73b08eb6",
-        "https://medium.com/towards-data-science/cuda-for-ai-intuitively-and-exhaustively-explained-6ba6cb4406c5",
-        "https://medium.com/towards-data-science/kolmogorov-arnold-networks-the-latest-advance-in-neural-networks-simply-explained-f083cf994a85",
-        "https://medium.com/@zlliu/youre-decent-at-python-if-you-can-answer-these-7-questions-correctly-7de5e8279e7f",
-        "https://medium.com/javascript-in-plain-english/microsoft-is-ditching-react-f8b952b92b9b",
-        "https://medium.com/@rajster.miha/10-cheap-desk-upgrades-every-programmer-needs-f89d92d16de4",
-        "https://medium.com/gitconnected/airflow-vs-mage-vs-kestra-e4bf6e35cfa2",
-        "https://medium.com/bip-xtech/stop-using-moving-average-to-smooth-your-time-series-2179af9ed59b",
-        "https://medium.com/ai-in-plain-english/you-are-using-chatgpt-wrong-1-mistake-99-of-users-make-fe0263d52481",
-        "https://medium.com/lessons-from-history/putin-admits-hes-lost-the-war-df75caa88310",
         "https://github.com/TheOdinProject",
         "https://github.com/freeCodeCamp",
         "https://github.com/facebook",
@@ -530,7 +505,7 @@ if __name__ == "__main__":
                         "INSERT INTO payment_gateways (website_id, gateway) VALUES (%s, %s)",
                         (website_id, gateway)
                     )
-            elif payment_gateways_data==[]:
+            elif payment_gateways_data==[] or payment_gateways_data == 'Not Found':
                 cursor.execute(
                         "INSERT INTO payment_gateways (website_id, gateway) VALUES (%s, %s)",
                         (website_id, '-')
