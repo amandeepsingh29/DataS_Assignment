@@ -7,15 +7,7 @@ website_list = [
 ]
 
 def check_scraping_allowed(url):
-    """Checks the robots.txt file of a website to see if scraping is allowed.
-
-    Args:
-        url (str): The URL of the website to check.
-
-    Returns:
-        bool: True if scraping is allowed, False otherwise.
-        str: A message summarizing the findings.
-    """
+    
     robots_url = urljoin(url, "robots.txt")
     rp = RobotFileParser()
 
